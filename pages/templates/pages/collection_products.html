@@ -1,0 +1,41 @@
+
+
+{% block title %}
+    Collection Details - {{ collection.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>{{ collection.name }} Collection Details</h2>
+
+        <!-- Display collection information -->
+        <p>Collection Name: {{ collection.name }}</p>
+        <img src="{{ collection.image.url }}" alt="{{ collection.name }}">
+
+        <!-- Collection Products -->
+        <h3>Products in this Collection</h3>
+        {% for product in products %}
+            <div class="product-details">
+                <h4>{{ product.name }}</h4>
+                <p>Description: {{ product.description }}</p>
+                <p>Price: ${{ product.price }}</p>
+                <p>Category: {{ product.category.name }}</p>
+                <p>Colors: {% for color in product.colors.all %}{{ color.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+                <p>Sizes: {{ product.sizes }}</p>
+                <p>Quantity: {{ product.quantity }}</p>
+
+                <!-- Loop through associated images for the product -->
+                <div class="product-images">
+                    {% for image in product.images.all %}
+                        <img src="{{ image.image.url }}" alt="{{ product.name }}">
+                    {% endfor %}
+                </div>
+
+                <!-- Add other product details here -->
+
+                <hr>
+            </div>
+        {% endfor %}
+        <!-- End Collection Products -->
+    </div>
+{% endblock %}

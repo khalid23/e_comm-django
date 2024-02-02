@@ -1,0 +1,9 @@
+{% block title %}
+<h2>{{ category.name }} Products</h2>
+{% endblock %}
+
+
+{% for product in products %}
+    <!-- Display product information here -->
+    {{ product.name }}, {{ product.price }}, etc.
+{% endfor %}

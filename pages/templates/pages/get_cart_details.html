@@ -1,0 +1,23 @@
+<!-- Product -->
+<div class="u-basket__product g-brd-none g-px-20">
+  {% for product_id, quantity in cart.items %}
+  {% with product=Product.objects.get(pk=product_id) %}
+  <div class="row no-gutters g-pb-5">
+      <div class="col-4 pr-3">
+          <a class="u-basket__product-img" href="#">
+              <img class="img-fluid" src="{{ product.images.first.image.url }}" alt="{{ product.name }}">
+          </a>
+      </div>
+
+      <div class="col-8">
+          <h6 class="g-font-weight-400 g-font-size-default">
+              <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">{{ product.name }}</a>
+          </h6>
+          <small class="g-color-primary g-font-size-12">{{ quantity }} x ${{ product.price }}</small>
+      </div>
+  </div>
+  <button type="button" class="u-basket__product-remove">&times;</button>
+  {% endwith %}
+  {% endfor %}
+</div>
+<!-- End Product -->
